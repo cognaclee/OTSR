@@ -1,21 +1,11 @@
 # OTSR
 Blind Super-Resolution under the guidance of Optimal Transmission
 
-Zezeng Li  , Na Lei  , Hao Xue , Ji Shi
-
 (*Official PyTorch Implementation*)
 
 ## Introduction
 
  Recent state-of-the-art super-resolution methods provide some solutions, but these methods make their model convergent to a specific maps under the constraint of prior knowledge, resulting in severe loss of details when these methods are dealing with low-resolution images in the real world. To solve these problems, we propose OTSR: an image super-resolution method based on the optimal transmission theory.
-
-If you are interested in this work, please cite our [paper](http://openaccess.thecvf.com/content_CVPRW_2020/papers/w31/Ji_Real-World_Super-Resolution_via_Kernel_Estimation_and_Noise_Injection_CVPRW_2020_paper.pdf)
-
-    @InProceedings{
-                   booktitle = {Blind Super-Resolution under the guidance of Optimal Transmission},
-                   month = {June},
-                   year = {2020}
-         }
 
 
 

@@ -1,0 +1,99 @@
+#### general settings
+name: Corrupted_noise
+use_tb_logger: true
+model: srgan
+distortion: sr
+scale: 4
+gpu_ids: [5,4,3,0]
+
+#### datasets
+datasets:
+  train:
+    name: train
+    mode: LQGT
+    aug: noise
+    noise_data: ../datasets/DF2K/Corrupted_noise/
+    dataroot_GT: ../datasets/DF2K/generated/tdsr/HR
+    dataroot_LQ: ../datasets/DF2K/generated/tdsr/LR
+    use_shuffle: true
+    n_workers: 12  # per GPU
+    batch_size: 45
+    GT_size: 128
+    use_flip: true
+    use_rot: true
+    color: RGB
+  val:
+    name: val
+    mode: LQGT
+    dataroot_GT: ../datasets/DF2K/valid/HR
+    dataroot_LQ: ../datasets/DF2K/valid/LR
+
+#### network structures
+network_G:
+  which_model_G: RRDBNet
+  in_nc: 3
+  out_nc: 3
+  nf: 64
+  nb: 23
+network_D:
+  which_model_D: discriminator_vgg_128
+  in_nc: 3
+  nf: 64
+
+#### path
+path:
+  #pretrain_model_G: ../pretrained_model/DF2K.pth
+  pretrain_model_G: ../train_model/latest_G.pth
+  pretrain_model_D: ../train_model/latest_D.pth
+  strict_load: true
+  resume_state: ~
+  # MODEL SAVE PATH
+  models: ../train_model
+  val_images: 
+
+#### training settings: learning rate scheme, loss
+train:
+  lr_G: !!float 1e-4
+  weight_decay_G: 0
+  beta1_G: 0.9
+  beta2_G: 0.999
+  lr_D: !!float 1e-4
+  weight_decay_D: 0
+  beta1_D: 0.9
+  beta2_D: 0.999
+  lr_scheme: MultiStepLR
+
+  #niter: 216
+  #niter: 60001
+  niter: 16000
+  warmup_iter: -1  # no warm up
+  #lr_steps: [5000, 10000, 20000, 30000]
+  lr_steps: [5000, 10000, 15000, 20000]
+  #lr_steps: [54, 108, 162, 216]
+  #lr_gamma: 0.75
+  lr_gamma: 0.5
+
+  pixel_criterion: l1
+  pixel_weight: !!float 1e-2  # 1
+  feature_criterion: l1
+  feature_weight: 1
+  gan_type: ragan  # gan | ragan | wgan-qc
+  #gan_type: wgan-qc  # gan | ragan | wgan-qc
+  gan_weight: !!float 5e-3
+  edge_type: hednet  # sobel | canny | hednet
+  edge_weight: !!float 5e-3
+
+  D_update_ratio: 1
+  D_init_iters: 0
+
+  manual_seed: 10
+  #val_freq: !!float 5e3
+  val_freq: 100
+  
+  WQC_KCoef: 1
+  WQC_gamma: 0.1
+
+#### logger
+logger:
+  print_freq: 100
+  save_checkpoint_freq: !!float 5e3

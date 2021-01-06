@@ -1,0 +1,13 @@
+df2k:
+  tdsr:
+    source: '/home/public/data/RealSR/Corrupted-tr-x'
+    target: '/home/public/data/RealSR/Corrupted-tr-y'
+    valid: '/home/public/data/RealSR/Corrupted-va-x'
+dped:
+  clean:
+    hr:
+      train: '/home/public/data/RealSR/DPEDiphone-tr-x/'
+      valid: '/home/hao-xue/zezeng/real_sr/test_img/inputs/'
+datasets:
+  df2k: '../datasets/DF2K'
+  dped: '../datasets/DPED'

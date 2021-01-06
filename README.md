@@ -5,7 +5,8 @@ Blind Super-Resolution under the guidance of Optimal Transmission
 
 ## Introduction
 
- Recent state-of-the-art super-resolution methods provide some solutions, but these methods make their model convergent to a specific maps under the constraint of prior knowledge, resulting in severe loss of details when these methods are dealing with low-resolution images in the real world. To solve these problems, we propose OTSR: an image super-resolution method based on the optimal transmission theory.
+The essence of super-resolution(SR) is to find a map from low resolution image space to high resolution image space, which implies that the solution of SR problem is not unique. In the real world, the lack of image pairs makes image super-resolution a trickier blind problem known as Blind-SR. Existing methods are mainly based on prior knowledge to achieve the tradeoff between detail restoration and noise artifact suppression, which makes it impossible for them to get the optimal mapping in both aspects. To solve this problem, we propose OTSR : an image super-resolution method based on the optimal transport theory. OTSR aims to find the optimal solution to the ill-posed SR problem, so that the model can not only restore high-frequency detail accurately, but also suppress noise and artifacts well. Extensive experiments show that our method out-
+performs the state-of-the-art methods in terms of both detail repair and noise artifact suppression.
 
 
 

@@ -61,7 +61,7 @@ train:
 
   niter: 40000
   warmup_iter: -1  # no warm up
-  lr_steps: [10000, 20000, 30000, 30000]
+  lr_steps: [10000, 20000, 30000, 40000]
   lr_gamma: 0.5
 
   pixel_criterion: l1

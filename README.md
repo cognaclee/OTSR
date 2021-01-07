@@ -31,7 +31,7 @@ cd ./codes
 
 + python preprocess/creat_validation.py
 + python preprocess/collect_noise.py
-+ python preprocess/creat_validation.py
++ python preprocess/create_kernel_dataset.py
 2. Prepare dataset and edit options/dped/train_kernel_noise.yml
 + CUDA_VISIBLE_DEVICES=1,2,3  python train.py -opt options/dped/train_kernel_noise.yml 
 

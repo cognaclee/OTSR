@@ -23,5 +23,5 @@ network_G:
 
 #### path
 path:
-  pretrain_model_G: ../pretrained_model/DF2K.pth
+  pretrain_model_G: ../pretrained_model/DF2K_OTSR_G.pth
   results_root: ./results/

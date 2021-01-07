@@ -59,9 +59,9 @@ train:
   beta2_D: 0.999
   lr_scheme: MultiStepLR
 
-  niter: 40000
+  niter: 40001
   warmup_iter: -1  # no warm up
-  lr_steps: [10000, 20000, 30000, 30000]
+  lr_steps: [10000, 20000, 30000, 40000]
   lr_gamma: 0.5
 
   pixel_criterion: l1

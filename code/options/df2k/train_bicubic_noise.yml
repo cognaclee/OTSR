@@ -42,12 +42,10 @@ network_D:
 
 #### path
 path:
-  pretrain_model_G: ../pretrained_model/DF2K_OTSR_G.pth
+  pretrain_model_G: ../pretrained_model/DPED_OTSR_G.pth
   strict_load: true
-  resume_state: ~
-  # MODEL SAVE PATH
+  resume_state: ~ #../experiments/training_states/model.state
   models: ../train_model
-  val_images: 
 
 #### training settings: learning rate scheme, loss
 train:
@@ -61,35 +59,30 @@ train:
   beta2_D: 0.999
   lr_scheme: MultiStepLR
 
-  #niter: 216
-  #niter: 60001
-  niter: 16000
+  niter: 40000
   warmup_iter: -1  # no warm up
-  #lr_steps: [5000, 10000, 20000, 30000]
-  lr_steps: [5000, 10000, 15000, 20000]
-  #lr_steps: [54, 108, 162, 216]
-  #lr_gamma: 0.75
+  lr_steps: [10000, 20000, 30000, 30000]
   lr_gamma: 0.5
 
   pixel_criterion: l1
-  pixel_weight: !!float 1e-2  # 1
+  pixel_weight: !!float 1e-2
   feature_criterion: l1
-  feature_weight: 1
-  gan_type: ragan  # gan | ragan | wgan-qc
-  #gan_type: wgan-qc  # gan | ragan | wgan-qc
-  gan_weight: !!float 5e-3
-  edge_type: hednet  # sobel | canny | hednet
-  edge_weight: !!float 5e-3
+  feature_weight: 0.7
+  gan_type: wgan-qc  # gan | ragan | wgan-qc
+  gan_weight: !!float 1
 
   D_update_ratio: 1
   D_init_iters: 0
 
   manual_seed: 10
-  #val_freq: !!float 5e3
-  val_freq: 100
-  
+  val_freq: 1000
+
   WQC_KCoef: 1
-  WQC_gamma: 0.1
+  WQC_gamma: 0.40
+
+  edge_type: sobel
+  edge_weight: !!float 1e-2
+  #edge_weight: 0
 
 #### logger
 logger:

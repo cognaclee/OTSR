@@ -9,7 +9,7 @@ The essence of super-resolution(SR) is to find a map from low resolution image s
 
 ## Dependencies and Installation
 
-This code is based on [BasicSR](https://github.com/xinntao/BasicSR)
+This code is based on [Realsr](https://github.com/jixiaozhong/RealSR)
 
 
 + Python 3 (Recommend to use Anaconda)
@@ -37,10 +37,10 @@ cd ./codes
 
 
 
-## test code
+## Testing code
 cd ./codes
 ### DF2K/DPED dataset
 1. Modify the configuration file options/dped/options/test_dped.yml
 
-+   python test.py -opt options/dped/test_dped.yml 
++ CUDA_VISIBLE_DEVICES=1 python test.py -opt options/dped/test_dped.yml 
 2. The output images is saved in '../results/'

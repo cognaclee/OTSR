@@ -137,14 +137,6 @@ def main():
         current_step = 0
         start_epoch = 0
 
-    loss_len = total_epochs + 1-start_epoch
-    trian_generoter_loss = np.zeros(loss_len)
-    trian_discriminator_loss = np.zeros(loss_len)
-
-    score_len = int(math.floor(loss_len/opt['train']['val_freq']))
-    valid_ssim = []
-    valid_psnr = []
-    
     logger.info('Start training from epoch: {:d}, iter: {:d}'.format(start_epoch, current_step))
     for epoch in range(start_epoch, total_epochs + 1):
         if opt['dist']:
@@ -173,8 +165,6 @@ def main():
             model.update_learning_rate(current_step, warmup_iter=opt['train']['warmup_iter'])
             
             loss_and_index = epoch-start_epoch
-            trian_generoter_loss[loss_and_index] = model.g_total_loss
-            trian_discriminator_loss[loss_and_index] = model.d_total_loss
 
             if current_step % opt['train']['val_freq'] == 0 and rank <= 0 and val_loader is not None:
                 avg_psnr = val_pix_err_f = val_pix_err_nf = val_mean_color_err = avg_ssim = 0.0
@@ -207,15 +197,11 @@ def main():
                     avg_psnr += util.calculate_psnr(cropped_sr_img * 255, cropped_gt_img * 255)
                     avg_ssim += util.calculate_ssim(cropped_sr_img * 255, cropped_gt_img * 255)
 
-
                 avg_psnr = avg_psnr / idx
                 avg_ssim = avg_ssim / idx
                 val_pix_err_f /= idx
                 val_pix_err_nf /= idx
                 val_mean_color_err /= idx
-                
-                valid_ssim.append(avg_ssim)
-                valid_psnr.append(avg_psnr)
 
                 logger.info('# Validation # PSNR: {:.4e}'.format(avg_psnr))
                 logger.info('# Validation # SSIM: {:.4e}'.format(avg_ssim))
@@ -238,32 +224,6 @@ def main():
         logger.info('Saving the final model.')
         model.save('latest')
         logger.info('End of training.')
-   
-    plt.style.use("ggplot")
-    plt.figure()
-    plt.plot(np.arange(0,loss_len),trian_generoter_loss,label="train_generoter_loss")
-    plt.plot(np.arange(0,loss_len),trian_discriminator_loss,label="trian_discriminator_loss")
-
-    print(trian_generoter_loss)
-    print(trian_discriminator_loss)
-    plt.title("Training loss on OTSR")
-    plt.xlabel("epoch#")
-    plt.ylabel("loss")
-    plt.legend(loc="upper right")
-    plt.savefig("loss.jpg")
-    plt.show()
-    
-    plt.style.use("ggplot")
-    plt.figure()
-    plt.plot(np.arange(0, len(valid_ssim)),valid_ssim,label="valid_ssim")
-    plt.plot(np.arange(0, len(valid_psnr)),valid_psnr,label="valid_psnr")
-    plt.title("validation index score on OTSR")
-    plt.xlabel("epoch#")
-    plt.ylabel("index score")
-    plt.legend(loc="upper right")
-    plt.savefig("evaluate.jpg")
-    plt.show()
-
 
 if __name__ == '__main__':
     main()

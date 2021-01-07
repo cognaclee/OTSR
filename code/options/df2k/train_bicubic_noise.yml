@@ -42,9 +42,7 @@ network_D:
 
 #### path
 path:
-  #pretrain_model_G: ../pretrained_model/DF2K.pth
-  pretrain_model_G: ../train_model/latest_G.pth
-  pretrain_model_D: ../train_model/latest_D.pth
+  pretrain_model_G: ../pretrained_model/DF2K_OTSR_G.pth
   strict_load: true
   resume_state: ~
   # MODEL SAVE PATH

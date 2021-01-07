@@ -32,15 +32,18 @@ cd ./codes
 + python preprocess/creat_validation.py
 + python preprocess/collect_noise.py
 + python preprocess/create_kernel_dataset.py
-2. Prepare dataset and edit options/dped/train_kernel_noise.yml
+
+2. Prepare dataset and edit options/dped/train_kernel_noise.yml or options/df2k/train_bicubic_noise.yml
 + CUDA_VISIBLE_DEVICES=1,2,3  python train.py -opt options/dped/train_kernel_noise.yml 
+or CUDA_VISIBLE_DEVICES=1,2,3  python train.py -opt options/df2k/train_bicubic_noise.yml 
 
 
 
 ## Testing code
 cd ./codes
 ### DF2K/DPED dataset
-1. Modify the configuration file options/dped/options/test_dped.yml
+1. Modify the configuration file options/dped/options/test_dped.yml or options/df2k/test_df2k.yml
 
-+ CUDA_VISIBLE_DEVICES=1 python test.py -opt options/dped/test_dped.yml 
++ CUDA_VISIBLE_DEVICES=1 python test.py -opt options/dped/test_dped.yml or CUDA_VISIBLE_DEVICES=1 python test.py -opt options/df2k/test_df2k.yml
+
 2. The output images is saved in '../results/'

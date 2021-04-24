@@ -8,7 +8,8 @@ The essence of super-resolution(SR) is to find a map from low resolution image s
 
 ## Results
 ![DF2K](https://github.com/cognaclee/OTSR/blob/main/result/DF2K.png)
-<img src="https://github.com/cognaclee/OTSR/blob/main/result/DF2K.png" alt="00003" style="zoom:150%;" />
+<img src="https://github.com/cognaclee/OTSR/blob/main/result/DF2K.png" width="100" height="200">
+<!--<img src="https://github.com/cognaclee/OTSR/blob/main/result/DF2K.png" alt="00003" style="zoom:150%;" /> -->
 
 ## Dependencies and Installation
 

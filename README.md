@@ -1,5 +1,5 @@
 ## OTSR
-Blind Super-Resolution under the guidance of Optimal Transmission
+Real-World Super-Resolution under the guidance of Optimal Transmission
 
 (Official PyTorch Implementation)
 ### Introduction
